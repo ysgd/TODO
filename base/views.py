@@ -6,3 +6,6 @@ def home(request):
   todo.objs = todo.objects.all()
   data = {'todos': todo.objs}
   return render(request, 'index.html', context = data)
+
+def create(request):
+  return render(request, 'create.html')

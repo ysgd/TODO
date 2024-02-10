@@ -8,4 +8,9 @@ def home(request):
   return render(request, 'index.html', context = data)
 
 def create(request):
+  if request.method == 'POST':
+    tasks = request.POST.get('tasks')
+    desc = request.POST.get('desc')
+    status = request.POST.get('status')
+    todo.objects.create(tasks=tasks,desc=desc,status=status)
   return render(request, 'create.html')

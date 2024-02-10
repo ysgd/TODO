@@ -23,14 +23,16 @@
     <p class="d-flex align-items-center justify-content-center">
       Add your tasks
     </p>
-    <form>
+    <form method="POST">
+      {% csrf_token %}
       <div class="mb-3">
         <label for="tasks" class="form-label">Tasks</label>
-        <input type="text" class="form-control" id="tasks" />
+        <input name="tasks" type="text" class="form-control" id="tasks" />
       </div>
       <div class="mb-3">
         <label for="desc" class="form-label">Description</label>
         <textarea
+          name="desc"
           class="form-control"
           id="floatingTextarea2"
           style="height: 100px"
@@ -38,11 +40,15 @@
       </div>
       <div class="mb-3">
         <label for="status">Status</label>
-        <select class="form-select" aria-label="Default select example">
+        <select
+          name="status"
+          class="form-select"
+          aria-label="Default select example"
+        >
           <option selected>---</option>
-          <option value="1">In Progress</option>
-          <option value="2">Completed</option>
-          <option value="3">Not Completed</option>
+          <option value="In Progres">In Progress</option>
+          <option value="Completed">Completed</option>
+          <option value="Not Completed">Not Completed</option>
         </select>
       </div>
       <button type="submit" class="btn btn-primary">Add</button>

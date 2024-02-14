@@ -17,6 +17,7 @@
     ></script>
   </head>
   <body>
+    {% include "nav.html" %}
     <table class="table">
       <thead>
         <tr>
@@ -33,10 +34,23 @@
           <td>{{todo.tasks}}</td>
           <td>{{todo.description}}</td>
           <td>{{todo.status}}</td>
+          <td>
+            <a href="{% url 'edit' pk=todo.id %}"
+              ><button class="btn btn-warning">Edit</button></a
+            >
+            <a href="{% url 'delete' pk=todo.id %}"
+              ><button class="btn btn-danger">Delete</button></a
+            >
+          </td>
         </tr>
       </tbody>
       {%endfor%}
     </table>
+    <div class="col-3 mx-auto del">
+      <a href="{% url 'deleteAll' %}"
+        ><button class="btn btn-danger">Delete All</button></a
+      >
+    </div>
   </body>
   <script
     src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

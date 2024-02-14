@@ -28,16 +28,24 @@
       {% csrf_token %}
       <div class="mb-3">
         <label for="tasks" class="form-label">Tasks</label>
-        <input name="tasks" type="text" class="form-control" id="tasks" />
+        <input
+          name="tasks"
+          value="{{todo.tasks}}"
+          type="text"
+          class="form-control"
+          id="tasks"
+        />
       </div>
       <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
+        <label for="description" class="form-label">description</label>
         <textarea
           name="description"
           class="form-control"
           id="floatingTextarea2"
           style="height: 100px"
-        ></textarea>
+        >
+{{todo.description}}</textarea
+        >
       </div>
       <div class="mb-3">
         <label for="status">Status</label>
@@ -47,9 +55,19 @@
           aria-label="Default select example"
         >
           <option selected>---</option>
-          <option value="In Progress">In Progress</option>
+          {% if todo.status == 'In Progress' %}
+          <option selected value="In Progress">In Progress</option>
           <option value="Completed">Completed</option>
           <option value="Not Completed">Not Completed</option>
+          {% elif todo.status == 'Completed' %}
+          <option value="In Progress">In Progress</option>
+          <option selected value="Completed">Completed</option>
+          <option value="Not Completed">Not Completed</option>
+          {% elif todo.status == 'Not Completed' %}
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+          <option selected value="Not Completed">Not Completed</option>
+          {% endif %}
         </select>
       </div>
       <button type="submit" class="btn btn-primary">Add</button>

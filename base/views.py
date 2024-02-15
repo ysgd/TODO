@@ -38,5 +38,5 @@ def delete(request,pk):
 def deleteAll(request):
   todo.obj = todo.objects.all()
   todo.obj.delete()
-  return render(request, 'index.html')
+  return redirect('home')
   
